@@ -19,9 +19,13 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-    vector<ofPoint> myPointsA;
+    vector<ofPoint> myPointsA; //creating the points as vectors.
     vector<ofPoint> myPointsB;
     vector<ofPoint> myPointsC;
+    
+    
+    
+    
 
 		
 };
