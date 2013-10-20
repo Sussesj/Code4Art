@@ -15,7 +15,7 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
     ofSetColor(232, 30, 120);
-    ofNoFill();
+    ofFill();
     ofBeginShape(); //draw shape based on he movement of the mouse
     for (int i = 10; i < myPointsA.size(); i++) {
         ofVertex( myPointsA[i] );
