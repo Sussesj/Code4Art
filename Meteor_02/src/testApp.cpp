@@ -2,18 +2,49 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
+    ofBackground(0, 0, 0);
+    //Meteor
     for(int i =0; i<30; i++){
         class Meteor theMeteors; //Draw a Meteor
         theMeteors.init(); //assign a reference for us self
         
         Meteor.push_back(theMeteors); //Adding Meteors to the univers
     }
+    
+    //blink speed
+    for(int i=0; i<10; i++){
+        Star blink;
+        blink.init();
+        
+        stars.push_back(blink);
+    }
+    
+    //stars
+    for (int i = 0; i <10; i++) {
+        Star dead;
+        dead.init();
+        stars.push_back(dead);
+    }
 
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-
+    
+    if(ofGetElapsedTimef() > addStarAt){
+        Star blink;
+        blink.init();
+        stars.push_back(blink);
+        
+        addStarAt = ofGetElapsedTimef() + 0.1;
+        
+    }
+    if(stars.size()> killStarAt){
+        Star dead;
+        dead.init();
+        stars.push_back(dead);
+        killStarAt = stars.size()  ;
+    }
 }
 
 //--------------------------------------------------------------
@@ -22,6 +53,10 @@ void testApp::draw(){
     
     for (int i=0; i<Meteor.size(); i++) {
         Meteor[i].draw();
+    }
+    
+    for(int i=0; i<stars.size(); i++){
+        stars[i].draw();
     }
 
 }

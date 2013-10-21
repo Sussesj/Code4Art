@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "Meteor.h"
+#include "stars.h"
 
 class testApp : public ofBaseApp{
 
@@ -21,5 +22,12 @@ class testApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
         vector<Meteor> Meteor;
+    
+    vector <Star> stars;
+    
+    float addStarAt = 25;
+    float killStarAt = 100;
+    float size;
+    ofPoint pos;
 		
 };
