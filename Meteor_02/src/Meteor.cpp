@@ -8,55 +8,56 @@
 
 #include "Meteor.h"
 
-
 // --------------------------------------
 void Meteor::init() {
-        position.x = ofRandomWidth(); // ofRandom(0, ofGetWidth());
+        position.x = ofRandomWidth(); 
         position.y = ofRandomHeight();
     
-        size = 5;
+        sizeMeteor = 5;
         speedx = ofRandom(-1, 1);
         speedy = ofRandom(-1, 1);
     
-    
-
+        
+    exploded = false;
 }
 
 // --------------------------------------
 void Meteor::update() {
-    if(size < 30) {
-        bMeteorSize = true;
+    
+    if (position.x >= ofGetWidth()-sizeMeteor) {
+        speedx *= -1;
+        
+    }
+    else if (position.x < sizeMeteor){
+        speedx *= -1;
+    }
+    else if (position.y > ofGetHeight()-sizeMeteor) {
+        speedy *= -1;
+    }
+    else if (position.y < sizeMeteor) {
+        speedy *= -1;
     }
 
+    position.x += speedx;
+    position.y += speedy;
+
+    
+    if(sizeMeteor > 50) {
+        exploded = true;
+    }
     
 }
-
 // --------------------------------------
 void Meteor::draw() {
+    
+    if(!exploded)
+    {
         ofSetColor(255, ofRandom(0,255), 0);
-        ofEllipse(position, size, size);
-        position.x += speedx;
-        position.y += speedy;
-        speedx += size;
-    
-    if (position.x >= ofGetWidth()-size) {
-        speedx *= -1;
-        size += 1;
-        //bMeteorSize = true;
+        ofCircle(position, sizeMeteor);
     }
-    else if (position.x < ofGetWidth()){
-        speedx *= 1;
+    else {
+        // draw exploded cow
     }
-    else if (position.y > ofGetHeight()) {
-        speedy *= -1;
-        //bMeteorSize = true;
-    }
-    else if (position.y < ofGetHeight()) {
-        speedy *= 1;
-        //bMeteorSize = true;
-    }
-    
-    
 }
 
 

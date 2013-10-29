@@ -21,13 +21,7 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-        vector<Meteor> Meteor;
-    
-    vector <Star> stars;
-    
-    float addStarAt = 25;
-    float killStarAt = 100;
-    float size;
-    ofPoint pos;
+    vector<Meteor> meteors;
+    vector <Stars> stars;
 		
 };

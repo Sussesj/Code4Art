@@ -8,17 +8,19 @@
 
 #pragma once
 #include "ofMain.h"
+#include "stars.h"
 
 class Meteor {
 public:
-    
     void init();
     void update();
     void draw();
     
     ofPoint position;
-    float size;
+    float sizeMeteor;
     float speedx;
     float speedy;
-    bool bMeteorSize = false;
+    
+    bool exploded;
+    
 };

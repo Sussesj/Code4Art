@@ -3,60 +3,61 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     ofBackground(0, 0, 0);
+    
     //Meteor
-    for(int i =0; i<30; i++){
-        class Meteor theMeteors; //Draw a Meteor
+    for(int i =0; i<20; i++){
+        Meteor theMeteors; //Draw a Meteor
         theMeteors.init(); //assign a reference for us self
         
-        Meteor.push_back(theMeteors); //Adding Meteors to the univers
-    }
-    
-    //blink speed
-    for(int i=0; i<10; i++){
-        Star blink;
-        blink.init();
-        
-        stars.push_back(blink);
+        meteors.push_back(theMeteors); //Adding Meteors to the univers
     }
     
     //stars
-    for (int i = 0; i <10; i++) {
-        Star dead;
-        dead.init();
-        stars.push_back(dead);
+    for (int i = 0; i<40; i++) {
+        Stars theStars; //drawing stars
+        theStars.init();
+        
+        stars.push_back(theStars);
     }
-
+    
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
+
+    for (int i=0; i<meteors.size(); i++) {
+        meteors[i].update();
+    }
     
-    if(ofGetElapsedTimef() > addStarAt){
-        Star blink;
-        blink.init();
-        stars.push_back(blink);
-        
-        addStarAt = ofGetElapsedTimef() + 0.1;
-        
+    for(int i=0; i<stars.size(); i++) {
+        for (int j=0; j<meteors.size(); j++) {
+            
+            float d = ofDist(meteors[j].position.x, meteors[j].position.y, stars[i].xpos, stars[i].ypos);
+            
+//            if (d < meteors[j].sizeMeteor) {
+            if (d < 100) {
+                //stars.erase(stars.begin()+i);
+                cout << "print erase stars : collision between i: " << i << "and j: " << j << endl;
+            }
+        }
     }
-    if(stars.size()> killStarAt){
-        Star dead;
-        dead.init();
-        stars.push_back(dead);
-        killStarAt = stars.size()  ;
-    }
+    
+    
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    ofBackground(0);
     
-    for (int i=0; i<Meteor.size(); i++) {
-        Meteor[i].draw();
+    for (int i=0; i<meteors.size(); i++) {
+        meteors[i].draw();
+        ofSetColor(255);
+        ofDrawBitmapString(ofToString(i), meteors[i].position);
     }
     
     for(int i=0; i<stars.size(); i++){
         stars[i].draw();
+        ofSetColor(255);
+        ofDrawBitmapString(ofToString(i), stars[i].pos);
     }
 
 }
