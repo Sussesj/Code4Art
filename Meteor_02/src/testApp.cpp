@@ -4,8 +4,13 @@
 void testApp::setup(){
     ofBackground(0, 0, 0);
     
+    ofSetFrameRate(30);
+    
+    drawCow = false;
+    cow.loadImage("cow.png");
+    
     //Meteor
-    for(int i =0; i<20; i++){
+    for(int i =0; i<15; i++){
         Meteor theMeteors; //Draw a Meteor
         theMeteors.init(); //assign a reference for us self
         
@@ -20,6 +25,8 @@ void testApp::setup(){
         stars.push_back(theStars);
     }
     
+    ofSetRectMode(OF_RECTMODE_CENTER);
+    
 }
 
 //--------------------------------------------------------------
@@ -32,17 +39,18 @@ void testApp::update(){
     for(int i=0; i<stars.size(); i++) {
         for (int j=0; j<meteors.size(); j++) {
             
-            float d = ofDist(meteors[j].position.x, meteors[j].position.y, stars[i].xpos, stars[i].ypos);
+            float d = ofDist(meteors[j].position.x, meteors[j].position.y, stars[i].pos.x, stars[i].pos.y);
             
-//            if (d < meteors[j].sizeMeteor) {
-            if (d < 100) {
-                //stars.erase(stars.begin()+i);
-                cout << "print erase stars : collision between i: " << i << "and j: " << j << endl;
+            //cout << i << " " << j << " | " << d << endl;
+            if (d < meteors[j].sizeMeteor) { 
+                cowPosition = stars[i].pos;
+                cout << cowPosition << " " << endl;
+                stars.erase(stars.begin()+i);
+                drawCow = true;
+                //cout << "print erase stars : collision between i: " << i << " and j: " << j << endl;
             }
         }
     }
-    
-    
 }
 
 //--------------------------------------------------------------
@@ -50,14 +58,22 @@ void testApp::draw(){
     
     for (int i=0; i<meteors.size(); i++) {
         meteors[i].draw();
-        ofSetColor(255);
-        ofDrawBitmapString(ofToString(i), meteors[i].position);
+        //ofSetColor(255);
+        //ofDrawBitmapString(ofToString(i), meteors[i].position);
     }
     
     for(int i=0; i<stars.size(); i++){
         stars[i].draw();
-        ofSetColor(255);
-        ofDrawBitmapString(ofToString(i), stars[i].pos);
+        //ofSetColor(255);
+        //ofDrawBitmapString(ofToString(i), stars[i].pos);
+    }
+    
+    if (drawCow == true) {
+        ofPushMatrix();
+        ofTranslate(cowPosition);
+        ofSetColor(255,255);
+        cow.draw(0,0,50,50);
+        ofPopMatrix();
     }
 
 }

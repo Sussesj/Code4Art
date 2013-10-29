@@ -21,6 +21,4 @@ public:
     float speedx;
     float speedy;
     
-    bool exploded;
-    
 };

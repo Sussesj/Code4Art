@@ -22,6 +22,12 @@ class testApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     
     vector<Meteor> meteors;
-    vector <Stars> stars;
+    vector<Stars> stars;
+    
+    ofPoint cowPosition;
+    
+    ofImage cow;
+    
+    bool drawCow = false;
 		
 };

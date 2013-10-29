@@ -17,8 +17,6 @@ void Meteor::init() {
         speedx = ofRandom(-1, 1);
         speedy = ofRandom(-1, 1);
     
-        
-    exploded = false;
 }
 
 // --------------------------------------
@@ -40,24 +38,16 @@ void Meteor::update() {
 
     position.x += speedx;
     position.y += speedy;
+    
+    
 
     
-    if(sizeMeteor > 50) {
-        exploded = true;
-    }
     
 }
 // --------------------------------------
 void Meteor::draw() {
-    
-    if(!exploded)
-    {
         ofSetColor(255, ofRandom(0,255), 0);
         ofCircle(position, sizeMeteor);
-    }
-    else {
-        // draw exploded cow
-    }
 }
 
 
