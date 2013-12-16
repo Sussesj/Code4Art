@@ -25,7 +25,7 @@ void testApp::setup(){
         stars.push_back(theStars);
     }
     
-    ofSetRectMode(OF_RECTMODE_CENTER);
+    ofSetRectMode(OF_RECTMODE_CENTER); //draws it from center
     
 }
 

@@ -18,9 +18,8 @@ public:
     }
     
     void draw() {
-        //ofSetColor(ofColor::green);
-        ofSetColor(255, ofRandom(0,100), ofRandom(0,255));
-        ofRect(position, 20, 20);
+        ofSetColor(ofColor::green);
+        ofRect(position, 2, 2);
     }
     
     ofPoint position;

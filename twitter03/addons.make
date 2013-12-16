@@ -1,0 +1,4 @@
+ofxXmlSettings
+ofxCv
+ofxJSON
+ofxOAuth

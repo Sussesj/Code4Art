@@ -17,7 +17,7 @@ public:
     void init();
     ofPoint chase( vector<Prey>& prey );
     ofPoint avoid(vector<Predator>& predators);
-    ofPoint eat( vector<Prey>& prey);
+    ofPoint eat( vector<Prey>& prey );
     void update(vector<Predator>& predators, vector<Prey>& prey);
     void draw();
 
